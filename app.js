@@ -21,6 +21,7 @@ app.use(cors());
 
 //// create Task
 app.post('/api/v1.0/api/register',applicationMethod.register);
+app.post('/api/v1.0/api/login_user',applicationMethod.login_user);
 
 // Get all task resource
 //app.get('/api/v1.0/task',taskController.getTask);
