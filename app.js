@@ -11,7 +11,6 @@ var SERVER_PORT = 5000;
 
 var app = express();
 
-
 // applying middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -22,7 +21,8 @@ app.use(cors());
 //// create Task
 app.post('/api/v1.0/api/register',applicationMethod.register);
 app.post('/api/v1.0/api/login_user',applicationMethod.login_user);
-
+app.post('/api/v1.0/api/terms_of_use',applicationMethod.terms_of_use);
+app.post('/api/v1.0/api/show_terms',applicationMethod.show_terms);
 // Get all task resource
 //app.get('/api/v1.0/task',taskController.getTask);
 //app.get('/api/v1.0/task/id',taskController.getTaskById);
