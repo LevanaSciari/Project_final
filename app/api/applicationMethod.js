@@ -14,7 +14,6 @@ module.exports = {
         if(cell_phone.toString().length != 9){
             return res.status(200).json({ status: 0, message: "cell phone not valid" });
         }
-                //select id from tb_users where email = 'ors@inmanage.net' or user_id = 203640768 or cell_phone = 547202175 or number_work = 1;
 
                 connection.query('SELECT id FROM tb_users where email=? or user_id=? or cell_phone=? or unique_id=?',[email,user_id,cell_phone,unique_id,], function (err, result, fields) {
                     if (err) {
@@ -40,9 +39,9 @@ module.exports = {
               var requestData = req.body;
               var cell_phone =requestData.cell_phone;
               var unique_id =requestData.unique_id;
-                //select id from tb_users where number_work = 1 and email = 'ors@gmail.com';
 
-                                connection.query('SELECT * FROM tb_users where cell_phone=? and unique_id=?',[cell_phone,unique_id], function (err, result, fields) {
+
+                                connection.query('SELECT users.*,term.authorized_signatory FROM tb_users AS users LEFT JOIN tb_terms_of_use as term ON (users.user_id = term.user_id) where users.cell_phone=? and users.unique_id=?',[cell_phone,unique_id], function (err, result, fields) {
                                     if (err) {
                                          return res.status(500).json({ status: 0, message: "error in database entry creation" });
                                     }
