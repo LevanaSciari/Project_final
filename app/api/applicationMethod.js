@@ -1,4 +1,5 @@
 var connection = require('../lib/database').connection;
+const moment = require('moment');
 
 module.exports = {
     register: function (req, res) {
@@ -68,7 +69,7 @@ module.exports = {
                                   if (result.length !== 1) {
                                       return res.status(200).json({ status: 0, message: "לא קיים משתמש במערכת" });
                                   }
-                                  data_insert = {...result[0],...{ "job_title" : job_title,"authorized_signatory" : authorized_signatory ,"last_update" : +new Date
+                                  data_insert = {...result[0],...{ "job_title" : job_title,"authorized_signatory" : authorized_signatory ,"last_update" : moment().unix()
     }};
                                   connection.query('INSERT INTO tb_terms_of_use SET ?', data_insert, function (err, result, fields) {
                                       if (err) {
